@@ -16,6 +16,9 @@
 		9DF7DF55249FF98E009B5902 /* FavoritesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF7DF54249FF98E009B5902 /* FavoritesListVC.swift */; };
 		9DF7DF57249FF9D8009B5902 /* MostViewedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF7DF56249FF9D8009B5902 /* MostViewedVC.swift */; };
 		9DF7DF5A249FFADF009B5902 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF7DF59249FFADF009B5902 /* AppColors.swift */; };
+		9DF7DF5D24A000A0009B5902 /* CPButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF7DF5C24A000A0009B5902 /* CPButton.swift */; };
+		9DF7DF6024A001AD009B5902 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF7DF5F24A001AD009B5902 /* UIView+Ext.swift */; };
+		9DF7DF6224A002C9009B5902 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF7DF6124A002C9009B5902 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		9DF7DF54249FF98E009B5902 /* FavoritesListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesListVC.swift; sourceTree = "<group>"; };
 		9DF7DF56249FF9D8009B5902 /* MostViewedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostViewedVC.swift; sourceTree = "<group>"; };
 		9DF7DF59249FFADF009B5902 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		9DF7DF5C24A000A0009B5902 /* CPButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPButton.swift; sourceTree = "<group>"; };
+		9DF7DF5F24A001AD009B5902 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		9DF7DF6124A002C9009B5902 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +68,7 @@
 		9DCE9D5C249FECF60042FEBB /* cinepark */ = {
 			isa = PBXGroup;
 			children = (
+				9DF7DF5E24A0019F009B5902 /* Extensions */,
 				9DF7DF58249FFACC009B5902 /* Utilities */,
 				9DF7DF4D249FF31D009B5902 /* CustomViews */,
 				9DF7DF4A249FF27E009B5902 /* Screens */,
@@ -84,6 +91,7 @@
 		9DF7DF4D249FF31D009B5902 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				9DF7DF5B24A00089009B5902 /* Buttons */,
 				9DF7DF4E249FF338009B5902 /* TabBarControllers */,
 			);
 			path = CustomViews;
@@ -112,8 +120,25 @@
 			isa = PBXGroup;
 			children = (
 				9DF7DF59249FFADF009B5902 /* AppColors.swift */,
+				9DF7DF6124A002C9009B5902 /* Constants.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		9DF7DF5B24A00089009B5902 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				9DF7DF5C24A000A0009B5902 /* CPButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		9DF7DF5E24A0019F009B5902 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9DF7DF5F24A001AD009B5902 /* UIView+Ext.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,10 +211,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DF7DF5D24A000A0009B5902 /* CPButton.swift in Sources */,
 				9DF7DF50249FF370009B5902 /* CPTabBarController.swift in Sources */,
 				9DF7DF53249FF971009B5902 /* MoviesAndTvListVC.swift in Sources */,
 				9DF7DF55249FF98E009B5902 /* FavoritesListVC.swift in Sources */,
 				9DCE9D5E249FECF60042FEBB /* AppDelegate.swift in Sources */,
+				9DF7DF6224A002C9009B5902 /* Constants.swift in Sources */,
+				9DF7DF6024A001AD009B5902 /* UIView+Ext.swift in Sources */,
 				9DF7DF5A249FFADF009B5902 /* AppColors.swift in Sources */,
 				9DF7DF57249FF9D8009B5902 /* MostViewedVC.swift in Sources */,
 				9DCE9D60249FECF60042FEBB /* SceneDelegate.swift in Sources */,

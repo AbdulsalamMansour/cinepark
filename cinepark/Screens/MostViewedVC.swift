@@ -9,22 +9,58 @@
 import UIKit
 
 class MostViewedVC: UIViewController {
-
+    
+    let logoImageView   = UIImageView()
+    let moviesButton    = CPButton(backgroundColor: AppColors.primaryViolet, title: "Movies")
+    let tvButton        = CPButton(backgroundColor: AppColors.primaryViolet, title: "TV")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemPink
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .systemBackground
+        view.addSubviews(logoImageView, moviesButton, tvButton)
+        configureLogoImageView()
+        configureMoviesButton()
+        configureTvButton()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
-    */
+    
+    func configureLogoImageView() {
+        view.addSubview(logoImageView)
+        logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        logoImageView.image = Images.cpLogo
+        
+        NSLayoutConstraint.activate([
+            logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            logoImageView.heightAnchor.constraint(equalToConstant: 300),
+            logoImageView.widthAnchor.constraint(equalToConstant: 300)
+        ])
+    }
+    
+    
+    func configureMoviesButton() {
+        
+        NSLayoutConstraint.activate([
+            moviesButton.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 40),
+            moviesButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            moviesButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            moviesButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
+    
+    func configureTvButton() {
+        
+        NSLayoutConstraint.activate([
+            tvButton.topAnchor.constraint(equalTo: moviesButton.bottomAnchor, constant: 15),
+            tvButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            tvButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            tvButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
 
 }
