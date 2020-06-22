@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		32C9D3DBD420C7032AC36B49 /* Pods_cinepark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9EFB83233C97CC061253E3 /* Pods_cinepark.framework */; };
 		9D0268AA24A115C000E88BF1 /* PosterImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0268A924A115C000E88BF1 /* PosterImageManager.swift */; };
+		9D0268AD24A1389A00E88BF1 /* CPDataLoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0268AC24A1389A00E88BF1 /* CPDataLoadingVC.swift */; };
 		9D2B16DC24A0D446005D8CFE /* ApiRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2B16DB24A0D446005D8CFE /* ApiRouter.swift */; };
 		9D2B16DE24A0D46D005D8CFE /* NetworkingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2B16DD24A0D46D005D8CFE /* NetworkingConstants.swift */; };
 		9D2B16E024A0D47B005D8CFE /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2B16DF24A0D47B005D8CFE /* ApiClient.swift */; };
@@ -36,6 +37,7 @@
 		0A9EFB83233C97CC061253E3 /* Pods_cinepark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cinepark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		608D0E8415EAC4A51F5FEFF2 /* Pods-cinepark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cinepark.release.xcconfig"; path = "Target Support Files/Pods-cinepark/Pods-cinepark.release.xcconfig"; sourceTree = "<group>"; };
 		9D0268A924A115C000E88BF1 /* PosterImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterImageManager.swift; sourceTree = "<group>"; };
+		9D0268AC24A1389A00E88BF1 /* CPDataLoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPDataLoadingVC.swift; sourceTree = "<group>"; };
 		9D2B16DB24A0D446005D8CFE /* ApiRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRouter.swift; sourceTree = "<group>"; };
 		9D2B16DD24A0D46D005D8CFE /* NetworkingConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingConstants.swift; sourceTree = "<group>"; };
 		9D2B16DF24A0D47B005D8CFE /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
@@ -80,6 +82,14 @@
 				0A9EFB83233C97CC061253E3 /* Pods_cinepark.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9D0268AB24A1385100E88BF1 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9D0268AC24A1389A00E88BF1 /* CPDataLoadingVC.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		9D2B16DA24A0D41B005D8CFE /* Networking */ = {
@@ -172,6 +182,7 @@
 		9DF7DF4D249FF31D009B5902 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				9D0268AB24A1385100E88BF1 /* ViewControllers */,
 				9DF7DF4E249FF338009B5902 /* TabBarControllers */,
 				9D2B16EC24A0ED71005D8CFE /* Labels */,
 				9D2B16E524A0E5A5005D8CFE /* ImageViews */,
@@ -360,6 +371,7 @@
 				9D2B16DE24A0D46D005D8CFE /* NetworkingConstants.swift in Sources */,
 				9DCE9D5E249FECF60042FEBB /* AppDelegate.swift in Sources */,
 				9DF7DF6224A002C9009B5902 /* Constants.swift in Sources */,
+				9D0268AD24A1389A00E88BF1 /* CPDataLoadingVC.swift in Sources */,
 				9D2B16EE24A0ED87005D8CFE /* CPTitleLabel.swift in Sources */,
 				9D2B16E024A0D47B005D8CFE /* ApiClient.swift in Sources */,
 				9DF7DF6024A001AD009B5902 /* UIView+Ext.swift in Sources */,

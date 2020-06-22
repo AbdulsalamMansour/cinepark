@@ -9,20 +9,20 @@
 import UIKit
 import RxSwift
 
-class MoviesAndTvListVC: UIViewController {
+class MoviesAndTvListVC: CPDataLoadingVC {
     
     enum Section { case main }
     
     var contentType: ContentType!
-    
     private let disposeBag = DisposeBag()
+    
     var results: [Result]               = []
     var filteredResults: [Result]       = []
+    
     var page                            = 1
     var hasMoreResults                  = true
     var isLoadingMoreResults            = false
     var isSearching                     = false
-
     
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Result>!
@@ -30,7 +30,7 @@ class MoviesAndTvListVC: UIViewController {
     
     init(contentType: ContentType) {
         super.init(nibName: nil, bundle: nil)
-        self.contentType   = contentType
+        self.contentType = contentType
     }
     
     required init?(coder: NSCoder) {
@@ -105,31 +105,38 @@ class MoviesAndTvListVC: UIViewController {
     
     
     func getMovies(page: Int){
+        showLoadingView()
+        isLoadingMoreResults = true
         ApiClient.getPopularMovies(page: page)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { response in
-                
+                self.dismissLoadingView()
+                self.isLoadingMoreResults = false
                 if let results = response.results {
                     self.updateUI(with: results)
                 }
             }, onError: { error in
+                self.dismissLoadingView()
+                self.isLoadingMoreResults = false
                 print("error ----------------------")
             })
             .disposed(by: disposeBag)
     }
     
     func getPopularTv(page: Int){
+        showLoadingView()
         isLoadingMoreResults = true
         ApiClient.getPopularTv(page: page)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { response in
-                
+                self.dismissLoadingView()
+                self.isLoadingMoreResults = false
                 if let results = response.results {
                     self.updateUI(with: results)
-                    self.isLoadingMoreResults = false
-                    
                 }
+                
             }, onError: { error in
+                self.dismissLoadingView()
                 self.isLoadingMoreResults = false
                 
             })
@@ -156,7 +163,6 @@ extension MoviesAndTvListVC: UICollectionViewDelegate {
     }
 }
 
-
 extension MoviesAndTvListVC: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -176,6 +182,5 @@ extension MoviesAndTvListVC: UISearchResultsUpdating {
             filteredResults = results.filter { $0.name!.lowercased().contains(filter.lowercased()) }
             updateData(on: filteredResults)
         }
-
     }
 }

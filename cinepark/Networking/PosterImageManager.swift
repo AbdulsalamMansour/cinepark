@@ -12,9 +12,7 @@ class PosterImageManager {
     static let shared   = PosterImageManager()
     private let baseURL = "https://image.tmdb.org/t/p/original"
     let cache           = NSCache<NSString, UIImage>()
-    
-    
-    
+
     func downloadImage(from urlString: String, completed: @escaping (UIImage?) -> Void) {
         let cacheKey = NSString(string: urlString)
         
@@ -29,8 +27,8 @@ class PosterImageManager {
         }
         
         let sessionConfig = URLSessionConfiguration.default
-        sessionConfig.timeoutIntervalForRequest = 100
-        sessionConfig.timeoutIntervalForResource = 100
+        sessionConfig.timeoutIntervalForRequest = 60
+        sessionConfig.timeoutIntervalForResource = 60
         let session = URLSession(configuration: sessionConfig)
         let task = session.dataTask(with: url) { [weak self] data, response, error in
             
