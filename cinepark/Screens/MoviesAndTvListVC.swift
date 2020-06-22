@@ -36,7 +36,12 @@ class MoviesAndTvListVC: UIViewController {
         super.viewDidLoad()
         configureViewController()
         configureCollectionView()
-        getMovies()
+        
+        if contentType == ContentType.movies {
+            getMovies()
+        } else {
+            getPopularTv()
+        }
         configureDataSource()
         
     }
@@ -76,6 +81,20 @@ class MoviesAndTvListVC: UIViewController {
     
     func getMovies(){
         ApiClient.getPopularMovies()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { response in
+
+                if let results = response.results {
+                    self.updateData(on: results)
+                }
+            }, onError: { error in
+                print("error ----------------------")
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func getPopularTv(){
+        ApiClient.getPopularTv()
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { response in
 

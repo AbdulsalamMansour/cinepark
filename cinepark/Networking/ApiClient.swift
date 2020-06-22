@@ -11,8 +11,12 @@ import Alamofire
 
 class ApiClient {
     
-    static func getPopularMovies() -> Observable<GetPopularMoviesResponse> {
+    static func getPopularMovies() -> Observable<GetPopularResponse> {
         return request(ApiRouter.getPopularMovies)
+    }
+    
+    static func getPopularTv() -> Observable<GetPopularResponse>{
+        return request(ApiRouter.getPopularTv)
     }
     
     //MARK:- Building The Request

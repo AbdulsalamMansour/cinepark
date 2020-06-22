@@ -29,7 +29,12 @@ class MostViewedItemCell: UICollectionViewCell {
         if let posterPath = result.posterPath {
             posterImageView.downloadImage(fromURL: posterPath)
         }
-        titleLabel.text = result.title
+        
+        if let title = result.title {
+            titleLabel.text = title
+        } else if let name = result.name {
+            titleLabel.text = name
+        }
     }
     
     

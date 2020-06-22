@@ -12,6 +12,7 @@ import Alamofire
 enum ApiRouter: URLRequestConvertible {
     
     case getPopularMovies
+    case getPopularTv
 
     
     
@@ -47,6 +48,9 @@ enum ApiRouter: URLRequestConvertible {
         switch self {
         case .getPopularMovies:
             return .get
+            
+        case .getPopularTv:
+            return .get
     
         }
     }
@@ -56,6 +60,9 @@ enum ApiRouter: URLRequestConvertible {
         switch self {
         case .getPopularMovies:
             return "movie/popular"
+            
+        case .getPopularTv:
+            return "tv/popular"
         }
     }
     
@@ -65,6 +72,8 @@ enum ApiRouter: URLRequestConvertible {
         case .getPopularMovies:
             return nil
             
+        case .getPopularTv:
+            return nil
         }
         
     }
