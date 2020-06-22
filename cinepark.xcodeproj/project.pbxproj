@@ -3,11 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		32C9D3DBD420C7032AC36B49 /* Pods_cinepark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9EFB83233C97CC061253E3 /* Pods_cinepark.framework */; };
+		9D2B16DC24A0D446005D8CFE /* ApiRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2B16DB24A0D446005D8CFE /* ApiRouter.swift */; };
+		9D2B16DE24A0D46D005D8CFE /* NetworkingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2B16DD24A0D46D005D8CFE /* NetworkingConstants.swift */; };
+		9D2B16E024A0D47B005D8CFE /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2B16DF24A0D47B005D8CFE /* ApiClient.swift */; };
+		9D2B16E324A0D6A3005D8CFE /* GetPopularMoviesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2B16E224A0D6A3005D8CFE /* GetPopularMoviesResponse.swift */; };
 		9DCE9D5E249FECF60042FEBB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCE9D5D249FECF60042FEBB /* AppDelegate.swift */; };
 		9DCE9D60249FECF60042FEBB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCE9D5F249FECF60042FEBB /* SceneDelegate.swift */; };
 		9DCE9D67249FECF80042FEBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DCE9D66249FECF80042FEBB /* Assets.xcassets */; };
@@ -25,6 +29,10 @@
 /* Begin PBXFileReference section */
 		0A9EFB83233C97CC061253E3 /* Pods_cinepark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cinepark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		608D0E8415EAC4A51F5FEFF2 /* Pods-cinepark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cinepark.release.xcconfig"; path = "Target Support Files/Pods-cinepark/Pods-cinepark.release.xcconfig"; sourceTree = "<group>"; };
+		9D2B16DB24A0D446005D8CFE /* ApiRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRouter.swift; sourceTree = "<group>"; };
+		9D2B16DD24A0D46D005D8CFE /* NetworkingConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingConstants.swift; sourceTree = "<group>"; };
+		9D2B16DF24A0D47B005D8CFE /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		9D2B16E224A0D6A3005D8CFE /* GetPopularMoviesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPopularMoviesResponse.swift; sourceTree = "<group>"; };
 		9DCE9D5A249FECF60042FEBB /* cinepark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cinepark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DCE9D5D249FECF60042FEBB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DCE9D5F249FECF60042FEBB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +70,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9D2B16DA24A0D41B005D8CFE /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				9D2B16DF24A0D47B005D8CFE /* ApiClient.swift */,
+				9D2B16DB24A0D446005D8CFE /* ApiRouter.swift */,
+				9D2B16DD24A0D46D005D8CFE /* NetworkingConstants.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		9D2B16E124A0D685005D8CFE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9D2B16E224A0D6A3005D8CFE /* GetPopularMoviesResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		9DCE9D51249FECF60042FEBB = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +110,8 @@
 			isa = PBXGroup;
 			children = (
 				9DF7DF58249FFACC009B5902 /* Utilities */,
+				9D2B16DA24A0D41B005D8CFE /* Networking */,
+				9D2B16E124A0D685005D8CFE /* Model */,
 				9DF7DF5E24A0019F009B5902 /* Extensions */,
 				9DF7DF4D249FF31D009B5902 /* CustomViews */,
 				9DF7DF4A249FF27E009B5902 /* Screens */,
@@ -162,7 +190,6 @@
 				E7194CD45184F4B25C147499 /* Pods-cinepark.debug.xcconfig */,
 				608D0E8415EAC4A51F5FEFF2 /* Pods-cinepark.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -280,12 +307,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D2B16E324A0D6A3005D8CFE /* GetPopularMoviesResponse.swift in Sources */,
 				9DF7DF5D24A000A0009B5902 /* CPButton.swift in Sources */,
 				9DF7DF50249FF370009B5902 /* CPTabBarController.swift in Sources */,
+				9D2B16DC24A0D446005D8CFE /* ApiRouter.swift in Sources */,
 				9DF7DF53249FF971009B5902 /* MoviesAndTvListVC.swift in Sources */,
 				9DF7DF55249FF98E009B5902 /* FavoritesListVC.swift in Sources */,
+				9D2B16DE24A0D46D005D8CFE /* NetworkingConstants.swift in Sources */,
 				9DCE9D5E249FECF60042FEBB /* AppDelegate.swift in Sources */,
 				9DF7DF6224A002C9009B5902 /* Constants.swift in Sources */,
+				9D2B16E024A0D47B005D8CFE /* ApiClient.swift in Sources */,
 				9DF7DF6024A001AD009B5902 /* UIView+Ext.swift in Sources */,
 				9DF7DF5A249FFADF009B5902 /* AppColors.swift in Sources */,
 				9DF7DF57249FF9D8009B5902 /* MostViewedVC.swift in Sources */,

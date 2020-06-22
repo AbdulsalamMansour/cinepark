@@ -41,6 +41,8 @@ class MostViewedVC: UIViewController {
         navigationController?.pushViewController(moviesAndTvListVC, animated: true)
     }
     
+    //MARK:- UIConfig Methods
+    
     func configureLogoImageView() {
         view.addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false

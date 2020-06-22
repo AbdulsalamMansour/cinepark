@@ -1,0 +1,71 @@
+//
+//  ApiRouter.swift
+//  cinepark
+//
+//  Created by Abdulsalam Mansour on 6/22/20.
+//  Copyright © 2020 abdulsalam. All rights reserved.
+//
+
+import Foundation
+import Alamofire
+
+enum ApiRouter: URLRequestConvertible {
+    
+    case getPopularMovies
+
+    
+    
+    //MARK: - URLRequestConvertible
+    func asURLRequest() throws -> URLRequest {
+        let url = try NetworkingConstants.baseUrl.asURL()
+        
+        var urlRequest = URLRequest(url: url.appendingPathComponent(path))
+        
+        urlRequest.timeoutInterval = 60 //seconds
+        
+        // Common Headers
+        urlRequest.setValue(NetworkingConstants.apiKey, forHTTPHeaderField: NetworkingConstants.HttpHeaderField.authentication.rawValue)
+        urlRequest.setValue(NetworkingConstants.ContentType.json.rawValue, forHTTPHeaderField: NetworkingConstants.HttpHeaderField.acceptType.rawValue)
+        urlRequest.setValue(NetworkingConstants.ContentType.json.rawValue, forHTTPHeaderField: NetworkingConstants.HttpHeaderField.contentType.rawValue)
+        
+        //Encoding
+        let encoding: ParameterEncoding = {
+            switch method {
+            case .get:
+                return URLEncoding.default
+            default:
+                return JSONEncoding.default
+            }
+        }()
+        
+        return try encoding.encode(urlRequest, with: parameters)
+        
+    }
+    
+    //MARK: - HttpMethod
+    private var method: HTTPMethod {
+        switch self {
+        case .getPopularMovies:
+            return .get
+    
+        }
+    }
+    
+    //MARK: - Path
+    private var path: String {
+        switch self {
+        case .getPopularMovies:
+            return "movie/popular"
+        }
+    }
+    
+    //MARK: - Parameters
+    private var parameters: Parameters? {
+        switch self {
+        case .getPopularMovies:
+            return nil
+            
+        }
+        
+    }
+}

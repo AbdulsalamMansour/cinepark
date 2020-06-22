@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import RxSwift
 
 class MoviesAndTvListVC: UIViewController {
-
+    
     var contentType: ContentType!
+    
+    private let disposeBag = DisposeBag()
     
     init(contentType: ContentType) {
         super.init(nibName: nil, bundle: nil)
@@ -25,7 +28,17 @@ class MoviesAndTvListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
-
+        
+        ApiClient.getPopularMovies()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { response in
+                
+                print(response)
+            }, onError: { error in
+               
+            })
+            .disposed(by: disposeBag)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,15 +51,15 @@ class MoviesAndTvListVC: UIViewController {
         title                = contentType.rawValue
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
