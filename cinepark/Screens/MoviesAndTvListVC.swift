@@ -14,7 +14,7 @@ class MoviesAndTvListVC: CPDataLoadingVC {
     enum Section { case main }
     
     var contentType: ContentType!
-    private let disposeBag = DisposeBag()
+    private let disposeBag              = DisposeBag()
     
     var results: [Result]               = []
     var filteredResults: [Result]       = []

@@ -11,7 +11,7 @@ import UIKit
 class MostViewedItemCell: UICollectionViewCell {
     static let reuseID  = "MostViewedItemCell"
     let posterImageView = CPPosterImageView(frame: .zero)
-    let titleLabel      = CPTitleLabel(textAlignment: .center, fontSize: 16)
+    let titleLabel      = CPTitleLabel(textAlignment: .center, fontSize: 12)
     
     
     override init(frame: CGRect) {
@@ -51,7 +51,7 @@ class MostViewedItemCell: UICollectionViewCell {
             titleLabel.topAnchor.constraint(equalTo: posterImageView.bottomAnchor, constant: 12),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-            titleLabel.heightAnchor.constraint(equalToConstant: 20)
+            titleLabel.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
     

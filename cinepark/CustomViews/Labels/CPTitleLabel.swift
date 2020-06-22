@@ -33,6 +33,7 @@ class CPTitleLabel: UILabel {
         adjustsFontSizeToFitWidth   = true
         minimumScaleFactor          = 0.9
         lineBreakMode               = .byTruncatingTail
+        numberOfLines               = 2
         translatesAutoresizingMaskIntoConstraints = false
     }
 }
