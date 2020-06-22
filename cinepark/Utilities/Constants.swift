@@ -9,7 +9,8 @@
 import UIKit
 
 enum Images {
-    static let cpLogo = UIImage(named: "cp-logo")
+    static let cpLogo       = UIImage(named: "cp-logo")
+    static let placeholder  = UIImage(named: "poster-placeholder")
 }
 
 enum ContentType: String {

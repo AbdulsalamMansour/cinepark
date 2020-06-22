@@ -6,12 +6,13 @@
 //  Copyright © 2020 abdulsalam. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct NetworkingConstants {
     
     static let baseUrl  = "https://api.themoviedb.org/3/"
     static let apiKey   = ""
+    let cache   = NSCache<NSString, UIImage>()
     
     struct Parameters {
 

@@ -11,9 +11,16 @@ import RxSwift
 
 class MoviesAndTvListVC: UIViewController {
     
+    enum Section { case main }
+    
     var contentType: ContentType!
     
     private let disposeBag = DisposeBag()
+    var results: [Result] = []
+    
+    var collectionView: UICollectionView!
+    var dataSource: UICollectionViewDiffableDataSource<Section, Result>!
+    
     
     init(contentType: ContentType) {
         super.init(nibName: nil, bundle: nil)
@@ -28,16 +35,9 @@ class MoviesAndTvListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
-        
-        ApiClient.getPopularMovies()
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { response in
-                
-                print(response)
-            }, onError: { error in
-               
-            })
-            .disposed(by: disposeBag)
+        configureCollectionView()
+        getMovies()
+        configureDataSource()
         
     }
     
@@ -51,15 +51,44 @@ class MoviesAndTvListVC: UIViewController {
         title                = contentType.rawValue
     }
     
+    func configureCollectionView() {
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createThreeColumnFlowLayout(in: view))
+        view.addSubview(collectionView)
+        collectionView.delegate = self
+        collectionView.backgroundColor = .systemBackground
+        collectionView.register(MostViewedItemCell.self, forCellWithReuseIdentifier: MostViewedItemCell.reuseID)
+    }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    func configureDataSource() {
+        dataSource = UICollectionViewDiffableDataSource<Section, Result>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, result) -> UICollectionViewCell? in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MostViewedItemCell.reuseID, for: indexPath) as! MostViewedItemCell
+            cell.set(result: result)
+            return cell
+        })
+    }
+    
+    func updateData(on results: [Result]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Result>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(results)
+        DispatchQueue.main.async { self.dataSource.apply(snapshot, animatingDifferences: true) }
+    }
+    
+    func getMovies(){
+        ApiClient.getPopularMovies()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { response in
+
+                if let results = response.results {
+                    self.updateData(on: results)
+                }
+            }, onError: { error in
+                print("error ----------------------")
+            })
+            .disposed(by: disposeBag)
+    }
+}
+
+extension MoviesAndTvListVC: UICollectionViewDelegate {
     
 }
