@@ -10,10 +10,32 @@ import UIKit
 
 class MoviesAndTvListVC: UIViewController {
 
+    var contentType: ContentType!
+    
+    init(contentType: ContentType) {
+        super.init(nibName: nil, bundle: nil)
+        self.contentType   = contentType
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureViewController()
 
-        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    private func configureViewController(){
+        view.backgroundColor = .systemBackground
+        title                = contentType.rawValue
     }
     
 

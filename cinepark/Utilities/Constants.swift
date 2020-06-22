@@ -11,3 +11,8 @@ import UIKit
 enum Images {
     static let cpLogo = UIImage(named: "cp-logo")
 }
+
+enum ContentType: String {
+    case movies = "Movies"
+    case tv     = "TV"
+}

@@ -28,6 +28,19 @@ class MostViewedVC: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
+    @objc func openMoviesList() {
+        pushMoviesAndTvListVC(contentType: .movies)
+    }
+    
+    @objc func openTvList() {
+        pushMoviesAndTvListVC(contentType: .tv)
+    }
+    
+    func pushMoviesAndTvListVC(contentType: ContentType){
+        let moviesAndTvListVC = MoviesAndTvListVC(contentType: contentType)
+        navigationController?.pushViewController(moviesAndTvListVC, animated: true)
+    }
+    
     func configureLogoImageView() {
         view.addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -41,9 +54,9 @@ class MostViewedVC: UIViewController {
         ])
     }
     
-    
     func configureMoviesButton() {
-        
+        moviesButton.addTarget(self, action: #selector(self.openMoviesList), for: .touchUpInside)
+
         NSLayoutConstraint.activate([
             moviesButton.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 40),
             moviesButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
@@ -54,7 +67,8 @@ class MostViewedVC: UIViewController {
     
     
     func configureTvButton() {
-        
+        tvButton.addTarget(self, action: #selector(self.openTvList), for: .touchUpInside)
+
         NSLayoutConstraint.activate([
             tvButton.topAnchor.constraint(equalTo: moviesButton.bottomAnchor, constant: 15),
             tvButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
@@ -62,5 +76,5 @@ class MostViewedVC: UIViewController {
             tvButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
-
+    
 }
