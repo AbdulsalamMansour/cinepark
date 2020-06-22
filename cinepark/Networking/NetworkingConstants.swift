@@ -11,11 +11,11 @@ import UIKit
 struct NetworkingConstants {
     
     static let baseUrl  = "https://api.themoviedb.org/3/"
-    static let apiKey   = ""
+    static let apiKey   = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2MzM5ZjAxZjI3NTI3MGMxOWUxNmM1NDA3ZWM1MTYzYiIsInN1YiI6IjViOWFlMTc3MGUwYTI2MjhlMzAwOGIxNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3sMTg4HOXLlKpohFfUsTUKUOKml5A_FQDBz5ru0nI3Y"
     let cache           = NSCache<NSString, UIImage>()
     
     struct Parameters {
-
+        static let page = "page"
     }
     
     enum HttpHeaderField: String {

@@ -28,7 +28,11 @@ class PosterImageManager {
             return
         }
         
-        let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+        let sessionConfig = URLSessionConfiguration.default
+        sessionConfig.timeoutIntervalForRequest = 100
+        sessionConfig.timeoutIntervalForResource = 100
+        let session = URLSession(configuration: sessionConfig)
+        let task = session.dataTask(with: url) { [weak self] data, response, error in
             
             guard let self = self,
                 error == nil,

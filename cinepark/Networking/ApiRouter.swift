@@ -11,10 +11,9 @@ import Alamofire
 
 enum ApiRouter: URLRequestConvertible {
     
-    case getPopularMovies
-    case getPopularTv
+    case getPopularMovies(page: Int)
+    case getPopularTv(page: Int)
 
-    
     
     //MARK: - URLRequestConvertible
     func asURLRequest() throws -> URLRequest {
@@ -69,11 +68,11 @@ enum ApiRouter: URLRequestConvertible {
     //MARK: - Parameters
     private var parameters: Parameters? {
         switch self {
-        case .getPopularMovies:
-            return nil
+        case .getPopularMovies(let page):
+            return [NetworkingConstants.Parameters.page : page]
             
-        case .getPopularTv:
-            return nil
+        case .getPopularTv(let page):
+            return [NetworkingConstants.Parameters.page : page]
         }
         
     }

@@ -16,7 +16,13 @@ class MoviesAndTvListVC: UIViewController {
     var contentType: ContentType!
     
     private let disposeBag = DisposeBag()
-    var results: [Result] = []
+    var results: [Result]               = []
+    var filteredResults: [Result]       = []
+    var page                            = 1
+    var hasMoreResults                  = true
+    var isLoadingMoreResults            = false
+    var isSearching                     = false
+
     
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Result>!
@@ -36,11 +42,11 @@ class MoviesAndTvListVC: UIViewController {
         super.viewDidLoad()
         configureViewController()
         configureCollectionView()
-        
+        configureSearchController()
         if contentType == ContentType.movies {
-            getMovies()
+            getMovies(page: self.page)
         } else {
-            getPopularTv()
+            getPopularTv(page: self.page)
         }
         configureDataSource()
         
@@ -64,6 +70,18 @@ class MoviesAndTvListVC: UIViewController {
         collectionView.register(MostViewedItemCell.self, forCellWithReuseIdentifier: MostViewedItemCell.reuseID)
     }
     
+    func configureSearchController() {
+        let searchController                                    = UISearchController()
+        searchController.searchResultsUpdater                   = self
+        if contentType == ContentType.movies {
+            searchController.searchBar.placeholder              = "Search for a movie"
+        } else if contentType == ContentType.tv{
+            searchController.searchBar.placeholder              = "Search for a TV show"
+        }
+        searchController.obscuresBackgroundDuringPresentation   = false
+        navigationItem.searchController                         = searchController
+    }
+    
     func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Result>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, result) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MostViewedItemCell.reuseID, for: indexPath) as! MostViewedItemCell
@@ -79,13 +97,20 @@ class MoviesAndTvListVC: UIViewController {
         DispatchQueue.main.async { self.dataSource.apply(snapshot, animatingDifferences: true) }
     }
     
-    func getMovies(){
-        ApiClient.getPopularMovies()
+    func updateUI(with results: [Result]) {
+        if results.count < 20 { self.hasMoreResults = false }
+        self.results.append(contentsOf: results)
+        self.updateData(on: self.results)
+    }
+    
+    
+    func getMovies(page: Int){
+        ApiClient.getPopularMovies(page: page)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { response in
-
+                
                 if let results = response.results {
-                    self.updateData(on: results)
+                    self.updateUI(with: results)
                 }
             }, onError: { error in
                 print("error ----------------------")
@@ -93,21 +118,64 @@ class MoviesAndTvListVC: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    func getPopularTv(){
-        ApiClient.getPopularTv()
+    func getPopularTv(page: Int){
+        isLoadingMoreResults = true
+        ApiClient.getPopularTv(page: page)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { response in
-
+                
                 if let results = response.results {
-                    self.updateData(on: results)
+                    self.updateUI(with: results)
+                    self.isLoadingMoreResults = false
+                    
                 }
             }, onError: { error in
-                print("error ----------------------")
+                self.isLoadingMoreResults = false
+                
             })
             .disposed(by: disposeBag)
     }
 }
 
 extension MoviesAndTvListVC: UICollectionViewDelegate {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let offsetY         = scrollView.contentOffset.y
+        let contentHeight   = scrollView.contentSize.height
+        let height          = scrollView.frame.size.height
+        
+        if offsetY > contentHeight - height {
+            guard hasMoreResults, !isLoadingMoreResults else { return }
+            page += 1
+            if contentType == ContentType.movies {
+                getMovies(page: self.page)
+            } else {
+                getPopularTv(page: self.page)
+            }
+            
+        }
+    }
+}
+
+
+extension MoviesAndTvListVC: UISearchResultsUpdating {
     
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let filter = searchController.searchBar.text, !filter.isEmpty else {
+            filteredResults.removeAll()
+            updateData(on: results)
+            isSearching = false
+            return
+        }
+        
+        isSearching = true
+        
+        if contentType == ContentType.movies {
+            filteredResults = results.filter { $0.title!.lowercased().contains(filter.lowercased()) }
+            updateData(on: filteredResults)
+        } else if contentType == ContentType.tv {
+            filteredResults = results.filter { $0.name!.lowercased().contains(filter.lowercased()) }
+            updateData(on: filteredResults)
+        }
+
+    }
 }
