@@ -1,0 +1,35 @@
+PODS:
+  - Alamofire (5.0.5)
+  - AlamofireNetworkActivityLogger (3.0.0):
+    - Alamofire (~> 5.0.0-rc.2)
+  - RxCocoa (5.1.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.1.1):
+    - RxSwift (~> 5)
+  - RxSwift (5.1.1)
+
+DEPENDENCIES:
+  - Alamofire
+  - AlamofireNetworkActivityLogger (~> 3.0)
+  - RxCocoa
+  - RxSwift
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - AlamofireNetworkActivityLogger
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+
+SPEC CHECKSUMS:
+  Alamofire: df2f8f826963b08b9a870791ad48e07a10090b2e
+  AlamofireNetworkActivityLogger: 94e8a7d454a4a9800cef1d0c1d3699754493684b
+  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
+  RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
+
+PODFILE CHECKSUM: 676ba5ad483600482fc5a219e7545fd369727b2f
+
+COCOAPODS: 1.8.4

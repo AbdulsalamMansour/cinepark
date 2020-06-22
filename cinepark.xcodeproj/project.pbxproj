@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32C9D3DBD420C7032AC36B49 /* Pods_cinepark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9EFB83233C97CC061253E3 /* Pods_cinepark.framework */; };
 		9DCE9D5E249FECF60042FEBB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCE9D5D249FECF60042FEBB /* AppDelegate.swift */; };
 		9DCE9D60249FECF60042FEBB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCE9D5F249FECF60042FEBB /* SceneDelegate.swift */; };
 		9DCE9D67249FECF80042FEBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DCE9D66249FECF80042FEBB /* Assets.xcassets */; };
@@ -22,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A9EFB83233C97CC061253E3 /* Pods_cinepark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cinepark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		608D0E8415EAC4A51F5FEFF2 /* Pods-cinepark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cinepark.release.xcconfig"; path = "Target Support Files/Pods-cinepark/Pods-cinepark.release.xcconfig"; sourceTree = "<group>"; };
 		9DCE9D5A249FECF60042FEBB /* cinepark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cinepark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DCE9D5D249FECF60042FEBB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DCE9D5F249FECF60042FEBB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -36,6 +39,7 @@
 		9DF7DF5C24A000A0009B5902 /* CPButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPButton.swift; sourceTree = "<group>"; };
 		9DF7DF5F24A001AD009B5902 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		9DF7DF6124A002C9009B5902 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E7194CD45184F4B25C147499 /* Pods-cinepark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cinepark.debug.xcconfig"; path = "Target Support Files/Pods-cinepark/Pods-cinepark.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,17 +47,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32C9D3DBD420C7032AC36B49 /* Pods_cinepark.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F78A30197EB63817B8F9202 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0A9EFB83233C97CC061253E3 /* Pods_cinepark.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9DCE9D51249FECF60042FEBB = {
 			isa = PBXGroup;
 			children = (
 				9DCE9D5C249FECF60042FEBB /* cinepark */,
 				9DCE9D5B249FECF60042FEBB /* Products */,
+				C0ECF147655892D7D6297D49 /* Pods */,
+				2F78A30197EB63817B8F9202 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -141,6 +156,16 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		C0ECF147655892D7D6297D49 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E7194CD45184F4B25C147499 /* Pods-cinepark.debug.xcconfig */,
+				608D0E8415EAC4A51F5FEFF2 /* Pods-cinepark.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -148,9 +173,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9DCE9D6E249FECF80042FEBB /* Build configuration list for PBXNativeTarget "cinepark" */;
 			buildPhases = (
+				E40CE527CF67DF03CC2A86F9 /* [CP] Check Pods Manifest.lock */,
 				9DCE9D56249FECF60042FEBB /* Sources */,
 				9DCE9D57249FECF60042FEBB /* Frameworks */,
 				9DCE9D58249FECF60042FEBB /* Resources */,
+				1181560FB54ED59DC900892D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -205,6 +232,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1181560FB54ED59DC900892D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-cinepark/Pods-cinepark-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-cinepark/Pods-cinepark-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-cinepark/Pods-cinepark-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E40CE527CF67DF03CC2A86F9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-cinepark-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9DCE9D56249FECF60042FEBB /* Sources */ = {
@@ -354,6 +423,7 @@
 		};
 		9DCE9D6F249FECF80042FEBB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E7194CD45184F4B25C147499 /* Pods-cinepark.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -372,6 +442,7 @@
 		};
 		9DCE9D70249FECF80042FEBB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 608D0E8415EAC4A51F5FEFF2 /* Pods-cinepark.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
