@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Result: Codable, Hashable{
+struct CineParkItem: Codable, Hashable{
     
     var posterPath: String?
     var id: Int?

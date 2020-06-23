@@ -22,9 +22,9 @@ class MovieAndTvInfoVC: UIViewController {
     
     let padding: CGFloat        = 12
     
-    var result: Result!
+    var result: CineParkItem!
     
-    init(result: Result) {
+    init(result: CineParkItem) {
         super.init(nibName: nil, bundle: nil)
         self.result = result
     }
@@ -48,7 +48,7 @@ class MovieAndTvInfoVC: UIViewController {
     func configureViewController() {
         view.backgroundColor = .systemBackground
         let doneButton = UIBarButtonItem(image: SFSymbols.xmark, style: .done, target: self, action: #selector(self.dismssVC))
-        let favoriteButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.addItemToFavorites))
+        let favoriteButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.onAddToFavoritesClick))
         navigationItem.rightBarButtonItem = doneButton
         navigationItem.leftBarButtonItem = favoriteButton
     }
@@ -159,8 +159,22 @@ class MovieAndTvInfoVC: UIViewController {
         dismiss(animated: true)
     }
     
-    @objc func addItemToFavorites() {
-        print(result!)
+    @objc func onAddToFavoritesClick() {
+        addItemToFavorites(mostViewedItem: result)
+    }
+    
+    func addItemToFavorites(mostViewedItem: CineParkItem) {
+        
+        PersistenceManager.updateWith(favorite: result, actionType: .add) { [weak self] error in
+            guard let self = self else { return }
+            
+            guard let error = error else {
+                self.presentCPAlertOnMainThread(title: "Success!", message: "You have successfully favorited this item", buttonTitle: "Ok")
+                return
+            }
+            
+            self.presentCPAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+        }
     }
     
 }

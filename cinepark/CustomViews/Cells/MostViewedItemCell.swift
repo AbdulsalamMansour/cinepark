@@ -25,14 +25,14 @@ class MostViewedItemCell: UICollectionViewCell {
     }
     
     
-    func set(result: Result) {
-        if let posterPath = result.posterPath {
+    func set(cineparkItem: CineParkItem) {
+        if let posterPath = cineparkItem.posterPath {
             posterImageView.downloadImage(fromURL: posterPath)
         }
         
-        if let title = result.title {
+        if let title = cineparkItem.title {
             titleLabel.text = title
-        } else if let name = result.name {
+        } else if let name = cineparkItem.name {
             titleLabel.text = name
         }
     }

@@ -16,8 +16,8 @@ class MoviesAndTvListVC: CPDataLoadingVC {
     var contentType: ContentType!
     private let disposeBag              = DisposeBag()
     
-    var results: [Result]               = []
-    var filteredResults: [Result]       = []
+    var cineparkItems: [CineParkItem]               = []
+    var filteredCineparkItems: [CineParkItem]       = []
     
     var page                            = 1
     var hasMoreResults                  = true
@@ -25,7 +25,7 @@ class MoviesAndTvListVC: CPDataLoadingVC {
     var isSearching                     = false
     
     var collectionView: UICollectionView!
-    var dataSource: UICollectionViewDiffableDataSource<Section, Result>!
+    var dataSource: UICollectionViewDiffableDataSource<Section, CineParkItem>!
     
     
     init(contentType: ContentType) {
@@ -83,24 +83,24 @@ class MoviesAndTvListVC: CPDataLoadingVC {
     }
     
     func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, Result>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, result) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<Section, CineParkItem>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, cineparkItem) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MostViewedItemCell.reuseID, for: indexPath) as! MostViewedItemCell
-            cell.set(result: result)
+            cell.set(cineparkItem: cineparkItem)
             return cell
         })
     }
     
-    func updateData(on results: [Result]) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Result>()
+    func updateData(on results: [CineParkItem]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, CineParkItem>()
         snapshot.appendSections([.main])
         snapshot.appendItems(results)
         DispatchQueue.main.async { self.dataSource.apply(snapshot, animatingDifferences: true) }
     }
     
-    func updateUI(with results: [Result]) {
+    func updateUI(with results: [CineParkItem]) {
         if results.count < 20 { self.hasMoreResults = false }
-        self.results.append(contentsOf: results)
-        self.updateData(on: self.results)
+        self.cineparkItems.append(contentsOf: results)
+        self.updateData(on: self.cineparkItems)
     }
     
     
@@ -112,7 +112,7 @@ class MoviesAndTvListVC: CPDataLoadingVC {
             .subscribe(onNext: { response in
                 self.dismissLoadingView()
                 self.isLoadingMoreResults = false
-                if let results = response.results {
+                if let results = response.cineparkItems {
                     self.updateUI(with: results)
                 }
             }, onError: { error in
@@ -131,7 +131,7 @@ class MoviesAndTvListVC: CPDataLoadingVC {
             .subscribe(onNext: { response in
                 self.dismissLoadingView()
                 self.isLoadingMoreResults = false
-                if let results = response.results {
+                if let results = response.cineparkItems {
                     self.updateUI(with: results)
                 }
                 
@@ -163,7 +163,7 @@ extension MoviesAndTvListVC: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let activeArray     = isSearching ? filteredResults : results
+        let activeArray     = isSearching ? filteredCineparkItems : cineparkItems
         let result        = activeArray[indexPath.item]
         
         let destVC          = MovieAndTvInfoVC(result: result)
@@ -178,8 +178,8 @@ extension MoviesAndTvListVC: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let filter = searchController.searchBar.text, !filter.isEmpty else {
-            filteredResults.removeAll()
-            updateData(on: results)
+            filteredCineparkItems.removeAll()
+            updateData(on: cineparkItems)
             isSearching = false
             return
         }
@@ -187,11 +187,11 @@ extension MoviesAndTvListVC: UISearchResultsUpdating {
         isSearching = true
         
         if contentType == ContentType.movies {
-            filteredResults = results.filter { $0.title!.lowercased().contains(filter.lowercased()) }
-            updateData(on: filteredResults)
+            filteredCineparkItems = cineparkItems.filter { $0.title!.lowercased().contains(filter.lowercased()) }
+            updateData(on: filteredCineparkItems)
         } else if contentType == ContentType.tv {
-            filteredResults = results.filter { $0.name!.lowercased().contains(filter.lowercased()) }
-            updateData(on: filteredResults)
+            filteredCineparkItems = cineparkItems.filter { $0.name!.lowercased().contains(filter.lowercased()) }
+            updateData(on: filteredCineparkItems)
         }
     }
 }
