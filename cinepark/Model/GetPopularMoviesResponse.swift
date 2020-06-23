@@ -11,7 +11,7 @@ import Foundation
 // MARK: - GetPopularMoviesResponse
 struct GetPopularResponse: Codable {
     let page, totalResults, totalPages: Int?
-    let cineparkItems: [CineParkItem]?
+    let cineparkItems: [CineparkItem]?
 
     enum CodingKeys: String, CodingKey {
         case page

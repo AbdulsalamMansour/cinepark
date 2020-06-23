@@ -16,8 +16,8 @@ class MoviesAndTvListVC: CPDataLoadingVC {
     var contentType: ContentType!
     private let disposeBag              = DisposeBag()
     
-    var cineparkItems: [CineParkItem]               = []
-    var filteredCineparkItems: [CineParkItem]       = []
+    var cineparkItems: [CineparkItem]               = []
+    var filteredCineparkItems: [CineparkItem]       = []
     
     var page                            = 1
     var hasMoreResults                  = true
@@ -25,7 +25,7 @@ class MoviesAndTvListVC: CPDataLoadingVC {
     var isSearching                     = false
     
     var collectionView: UICollectionView!
-    var dataSource: UICollectionViewDiffableDataSource<Section, CineParkItem>!
+    var dataSource: UICollectionViewDiffableDataSource<Section, CineparkItem>!
     
     
     init(contentType: ContentType) {
@@ -83,21 +83,21 @@ class MoviesAndTvListVC: CPDataLoadingVC {
     }
     
     func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, CineParkItem>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, cineparkItem) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<Section, CineparkItem>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, cineparkItem) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MostViewedItemCell.reuseID, for: indexPath) as! MostViewedItemCell
             cell.set(cineparkItem: cineparkItem)
             return cell
         })
     }
     
-    func updateData(on results: [CineParkItem]) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, CineParkItem>()
+    func updateData(on results: [CineparkItem]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, CineparkItem>()
         snapshot.appendSections([.main])
         snapshot.appendItems(results)
         DispatchQueue.main.async { self.dataSource.apply(snapshot, animatingDifferences: true) }
     }
     
-    func updateUI(with results: [CineParkItem]) {
+    func updateUI(with results: [CineparkItem]) {
         if results.count < 20 { self.hasMoreResults = false }
         self.cineparkItems.append(contentsOf: results)
         self.updateData(on: self.cineparkItems)
@@ -164,9 +164,9 @@ extension MoviesAndTvListVC: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let activeArray     = isSearching ? filteredCineparkItems : cineparkItems
-        let result        = activeArray[indexPath.item]
+        let cineparkItem        = activeArray[indexPath.item]
         
-        let destVC          = MovieAndTvInfoVC(result: result)
+        let destVC          = MovieAndTvInfoVC(cineparkItem: cineparkItem, presentation: .modal)
         //destVC.username     = follower.login
         //destVC.delegate     = self
         let navController   = UINavigationController(rootViewController: destVC)

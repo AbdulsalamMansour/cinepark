@@ -8,6 +8,10 @@
 
 import UIKit
 
+enum InfoVCPresentation {
+    case modal
+    case navigationController
+}
 class MovieAndTvInfoVC: UIViewController {
     
     let scrollView              = UIScrollView()
@@ -22,11 +26,13 @@ class MovieAndTvInfoVC: UIViewController {
     
     let padding: CGFloat        = 12
     
-    var result: CineParkItem!
+    var cineparkItem: CineparkItem!
+    var presentationType: InfoVCPresentation!
     
-    init(result: CineParkItem) {
+    init(cineparkItem: CineparkItem, presentation: InfoVCPresentation) {
         super.init(nibName: nil, bundle: nil)
-        self.result = result
+        self.cineparkItem       = cineparkItem
+        self.presentationType   = presentation
     }
     
     required init?(coder: NSCoder) {
@@ -47,8 +53,17 @@ class MovieAndTvInfoVC: UIViewController {
     
     func configureViewController() {
         view.backgroundColor = .systemBackground
-        let doneButton = UIBarButtonItem(image: SFSymbols.xmark, style: .done, target: self, action: #selector(self.dismssVC))
-        let favoriteButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.onAddToFavoritesClick))
+        
+        var doneButton: UIBarButtonItem!
+        var favoriteButton: UIBarButtonItem!
+        
+        if presentationType == .modal {
+            doneButton = UIBarButtonItem(image: SFSymbols.xmark, style: .done, target: self, action: #selector(self.dismssVC))
+            favoriteButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.onAddToFavoritesClick))
+        } else {
+            doneButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(self.onDeleteFromFavoritesClick))
+        }
+                
         navigationItem.rightBarButtonItem = doneButton
         navigationItem.leftBarButtonItem = favoriteButton
     }
@@ -68,7 +83,7 @@ class MovieAndTvInfoVC: UIViewController {
     func configurePosterImageView(){
         
         contentView.addSubview(posterImageView)
-        posterImageView.downloadImage(fromURL: result.posterPath!)
+        posterImageView.downloadImage(fromURL: cineparkItem.posterPath!)
         
         NSLayoutConstraint.activate([
             posterImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
@@ -81,10 +96,10 @@ class MovieAndTvInfoVC: UIViewController {
     func configureTitleLabel(){
         contentView.addSubview(titleLabel)
         
-        if let title = result.title{
+        if let title = cineparkItem.title{
             titleLabel.text = title
         } else {
-            titleLabel.text = result.name
+            titleLabel.text = cineparkItem.name
         }
         
         NSLayoutConstraint.activate([
@@ -99,7 +114,7 @@ class MovieAndTvInfoVC: UIViewController {
     
     func configureOverviewLabel(){
         contentView.addSubview(overviewLabel)
-        overviewLabel.text               = result.overview
+        overviewLabel.text               = cineparkItem.overview
         
         NSLayoutConstraint.activate([
             overviewLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor,constant: 7),
@@ -125,13 +140,13 @@ class MovieAndTvInfoVC: UIViewController {
     func configurePropertiesViews(){
         propertyContainerView.addSubviews(ratingView, dateView, languageView)
         
-        let rating: String = String(format:"%.1f", result.voteAverage!)
+        let rating: String = String(format:"%.1f", cineparkItem.voteAverage!)
         ratingView.set(itemInfoType: .rating, withValue: rating)
-        languageView.set(itemInfoType: .language, withValue: result.originalLanguage)
-        if let date = result.releaseDate {
+        languageView.set(itemInfoType: .language, withValue: cineparkItem.originalLanguage)
+        if let date = cineparkItem.releaseDate {
             dateView.set(itemInfoType: .releaseDate, withValue: date)
         } else {
-            dateView.set(itemInfoType: .releaseDate, withValue: result.firstAirDate)
+            dateView.set(itemInfoType: .releaseDate, withValue: cineparkItem.firstAirDate)
         }
         NSLayoutConstraint.activate([
             ratingView.topAnchor.constraint(equalTo: propertyContainerView.topAnchor,constant: padding),
@@ -148,7 +163,7 @@ class MovieAndTvInfoVC: UIViewController {
             dateView.leadingAnchor.constraint(equalTo: propertyContainerView.leadingAnchor),
             dateView.trailingAnchor.constraint(equalTo: propertyContainerView.trailingAnchor),
             dateView.heightAnchor.constraint(equalToConstant: 60)
-    
+            
             
         ])
         
@@ -159,13 +174,20 @@ class MovieAndTvInfoVC: UIViewController {
         dismiss(animated: true)
     }
     
-    @objc func onAddToFavoritesClick() {
-        addItemToFavorites(mostViewedItem: result)
+    @objc func popCurrentVC(){
+        _ = navigationController?.popViewController(animated: true)
     }
     
-    func addItemToFavorites(mostViewedItem: CineParkItem) {
-        
-        PersistenceManager.updateWith(favorite: result, actionType: .add) { [weak self] error in
+    @objc func onAddToFavoritesClick() {
+        addItemToFavorites(cineparkItem: cineparkItem)
+    }
+    
+    @objc func onDeleteFromFavoritesClick(){
+        removeItemFromFavorites(cineparkItem: cineparkItem)
+    }
+    
+    func addItemToFavorites(cineparkItem: CineparkItem) {
+        PersistenceManager.updateWith(favorite: cineparkItem, actionType: .add) { [weak self] error in
             guard let self = self else { return }
             
             guard let error = error else {
@@ -174,6 +196,18 @@ class MovieAndTvInfoVC: UIViewController {
             }
             
             self.presentCPAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+        }
+    }
+    
+    func removeItemFromFavorites(cineparkItem: CineparkItem){
+        PersistenceManager.updateWith(favorite: cineparkItem, actionType: .remove) { [weak self] error in
+            guard let self = self else { return }
+            guard let error = error else {
+                self.popCurrentVC()
+                return
+            }
+            
+            self.presentCPAlertOnMainThread(title: "Unable to remove", message: error.rawValue, buttonTitle: "Ok")
         }
     }
     

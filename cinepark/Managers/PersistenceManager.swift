@@ -18,7 +18,7 @@ enum PersistenceManager {
     enum Keys { static let favorites = "favorites" }
     
     
-    static func updateWith(favorite: CineParkItem, actionType: PersistenceActionType, completed: @escaping (CPError?) -> Void) {
+    static func updateWith(favorite: CineparkItem, actionType: PersistenceActionType, completed: @escaping (CPError?) -> Void) {
         retrieveFavorites { result in
             switch result {
             case .success(var favorites):
@@ -45,7 +45,7 @@ enum PersistenceManager {
     }
     
     
-    static func retrieveFavorites(completed: @escaping (Result<[CineParkItem], CPError>) -> Void) {
+    static func retrieveFavorites(completed: @escaping (Result<[CineparkItem], CPError>) -> Void) {
         guard let favoritesData = defaults.object(forKey: Keys.favorites) as? Data else {
             completed(.success([]))
             return
@@ -53,7 +53,7 @@ enum PersistenceManager {
         
         do {
             let decoder = JSONDecoder()
-            let favorites = try decoder.decode([CineParkItem].self, from: favoritesData)
+            let favorites = try decoder.decode([CineparkItem].self, from: favoritesData)
             completed(.success(favorites))
         } catch {
             completed(.failure(.unableToFavorite))
@@ -61,7 +61,7 @@ enum PersistenceManager {
     }
     
     
-    static func save(favorites: [CineParkItem]) -> CPError? {
+    static func save(favorites: [CineparkItem]) -> CPError? {
         do {
             let encoder = JSONEncoder()
             let encodedFavorites = try encoder.encode(favorites)

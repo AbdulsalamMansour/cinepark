@@ -25,7 +25,7 @@ class MostViewedItemCell: UICollectionViewCell {
     }
     
     
-    func set(cineparkItem: CineParkItem) {
+    func set(cineparkItem: CineparkItem) {
         if let posterPath = cineparkItem.posterPath {
             posterImageView.downloadImage(fromURL: posterPath)
         }
