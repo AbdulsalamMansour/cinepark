@@ -13,7 +13,7 @@ class CPAlertVC: UIViewController {
         let containerView   = CPAlertContainerView()
         let titleLabel      = CPTitleLabel(textAlignment: .center, fontSize: 20)
         let messageLabel    = CPBodyLabel(textAlignment: .center)
-        let actionButton    = CPButton(backgroundColor: .systemPink, title: "Ok")
+        let actionButton    = CPButton(backgroundColor: AppColors.primaryViolet, title: "Ok")
         
         var alertTitle: String?
         var message: String?
