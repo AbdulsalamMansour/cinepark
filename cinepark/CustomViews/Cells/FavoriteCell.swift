@@ -12,7 +12,7 @@ class FavoriteCell: UITableViewCell {
 
     static let reuseID  = "FavoriteCell"
     let posterImageView = CPPosterImageView(frame: .zero)
-    let itemTitle   = CPTitleLabel(textAlignment: .left, fontSize: 26)
+    let itemTitle       = CPTitleLabel(textAlignment: .left, fontSize: 18)
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
