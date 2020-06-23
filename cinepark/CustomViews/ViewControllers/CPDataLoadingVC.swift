@@ -41,4 +41,10 @@ class CPDataLoadingVC: UIViewController {
         }
     }
     
+    func showEmptyStateView(with message: String, in view: UIView) {
+        let emptyStateView = CPEmptyStateView(message: message)
+        emptyStateView.frame = view.bounds
+        view.addSubview(emptyStateView)
+    }
+    
 }

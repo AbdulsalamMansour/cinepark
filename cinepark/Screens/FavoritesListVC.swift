@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FavoritesListVC: UIViewController {
+class FavoritesListVC: CPDataLoadingVC {
 
         let tableView                   = UITableView()
         var favorites: [CineparkItem]   = []
@@ -63,7 +63,7 @@ class FavoritesListVC: UIViewController {
         
         func updateUI(with favorites: [CineparkItem]) {
             if favorites.isEmpty {
-                self.presentCPAlertOnMainThread(title: "No Favoritess", message: "", buttonTitle: "Ok")
+                self.showEmptyStateView(with: "No Favorites?\nAdd one from the Most Viewed screen.", in: self.view)
             } else  {
                 self.favorites = favorites
                 DispatchQueue.main.async {
