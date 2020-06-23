@@ -22,7 +22,6 @@
 		9D2B16E724A0E5CD005D8CFE /* CPPosterImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2B16E624A0E5CD005D8CFE /* CPPosterImageView.swift */; };
 		9D2B16EE24A0ED87005D8CFE /* CPTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2B16ED24A0ED87005D8CFE /* CPTitleLabel.swift */; };
 		9D2B16F024A0EDF0005D8CFE /* MostViewedItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2B16EF24A0EDF0005D8CFE /* MostViewedItemCell.swift */; };
-		9D2B16F424A0F918005D8CFE /* CineparkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2B16F324A0F918005D8CFE /* CineparkItem.swift */; };
 		9D2B16FC24A10CDB005D8CFE /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2B16FB24A10CDB005D8CFE /* UIHelper.swift */; };
 		9D628D1624A1848B002F9891 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D628D1524A1848B002F9891 /* PersistenceManager.swift */; };
 		9D628D1824A188EE002F9891 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D628D1724A188EE002F9891 /* UIViewController+Ext.swift */; };
@@ -64,7 +63,6 @@
 		9D2B16E624A0E5CD005D8CFE /* CPPosterImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPPosterImageView.swift; sourceTree = "<group>"; };
 		9D2B16ED24A0ED87005D8CFE /* CPTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPTitleLabel.swift; sourceTree = "<group>"; };
 		9D2B16EF24A0EDF0005D8CFE /* MostViewedItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostViewedItemCell.swift; sourceTree = "<group>"; };
-		9D2B16F324A0F918005D8CFE /* CineparkItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CineparkItem.swift; sourceTree = "<group>"; };
 		9D2B16FB24A10CDB005D8CFE /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		9D628D1524A1848B002F9891 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		9D628D1724A188EE002F9891 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
@@ -155,7 +153,6 @@
 			isa = PBXGroup;
 			children = (
 				9D2B16E224A0D6A3005D8CFE /* GetPopularMoviesResponse.swift */,
-				9D2B16F324A0F918005D8CFE /* CineparkItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -426,7 +423,6 @@
 				9D0268BF24A1695300E88BF1 /* CPPropertyView.swift in Sources */,
 				9D79E11F24A1E7940002D7ED /* UIImage+Ext.swift in Sources */,
 				9D2B16FC24A10CDB005D8CFE /* UIHelper.swift in Sources */,
-				9D2B16F424A0F918005D8CFE /* CineparkItem.swift in Sources */,
 				9DF7DF50249FF370009B5902 /* CPTabBarController.swift in Sources */,
 				9D2B16DC24A0D446005D8CFE /* ApiRouter.swift in Sources */,
 				9DF7DF53249FF971009B5902 /* MoviesAndTvListVC.swift in Sources */,
