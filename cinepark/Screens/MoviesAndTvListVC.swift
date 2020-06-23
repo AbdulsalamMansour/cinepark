@@ -161,6 +161,17 @@ extension MoviesAndTvListVC: UICollectionViewDelegate {
             
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let activeArray     = isSearching ? filteredResults : results
+        let result        = activeArray[indexPath.item]
+        
+        let destVC          = MovieAndTvInfoVC(result: result)
+        //destVC.username     = follower.login
+        //destVC.delegate     = self
+        let navController   = UINavigationController(rootViewController: destVC)
+        present(navController, animated: true)
+    }
 }
 
 extension MoviesAndTvListVC: UISearchResultsUpdating {

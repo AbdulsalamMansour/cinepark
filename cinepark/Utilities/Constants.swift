@@ -17,3 +17,11 @@ enum ContentType: String {
     case movies = "Movies"
     case tv     = "TV"
 }
+
+enum SFSymbols {
+    static let play                     = UIImage(systemName: "play.rectangle")
+    static let rating                   = UIImage(systemName: "smiley")
+    static let speaker                  = UIImage(systemName: "speaker.2")
+    static let xmark                    = UIImage(systemName: "xmark")
+}
+
