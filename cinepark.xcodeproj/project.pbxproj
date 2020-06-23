@@ -11,7 +11,6 @@
 		9D0268AA24A115C000E88BF1 /* PosterImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0268A924A115C000E88BF1 /* PosterImageManager.swift */; };
 		9D0268AD24A1389A00E88BF1 /* CPDataLoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0268AC24A1389A00E88BF1 /* CPDataLoadingVC.swift */; };
 		9D0268AF24A13E8800E88BF1 /* MovieAndTvInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0268AE24A13E8800E88BF1 /* MovieAndTvInfoVC.swift */; };
-		9D0268B124A146D100E88BF1 /* CPItemInfoHeaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0268B024A146D100E88BF1 /* CPItemInfoHeaderVC.swift */; };
 		9D0268B324A1475300E88BF1 /* CPBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0268B224A1475300E88BF1 /* CPBodyLabel.swift */; };
 		9D0268B524A147B000E88BF1 /* CPSecondaryTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0268B424A147B000E88BF1 /* CPSecondaryTitleLabel.swift */; };
 		9D0268B724A163ED00E88BF1 /* CPBodyTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0268B624A163ED00E88BF1 /* CPBodyTextView.swift */; };
@@ -52,7 +51,6 @@
 		9D0268A924A115C000E88BF1 /* PosterImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterImageManager.swift; sourceTree = "<group>"; };
 		9D0268AC24A1389A00E88BF1 /* CPDataLoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPDataLoadingVC.swift; sourceTree = "<group>"; };
 		9D0268AE24A13E8800E88BF1 /* MovieAndTvInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAndTvInfoVC.swift; sourceTree = "<group>"; };
-		9D0268B024A146D100E88BF1 /* CPItemInfoHeaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPItemInfoHeaderVC.swift; sourceTree = "<group>"; };
 		9D0268B224A1475300E88BF1 /* CPBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPBodyLabel.swift; sourceTree = "<group>"; };
 		9D0268B424A147B000E88BF1 /* CPSecondaryTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPSecondaryTitleLabel.swift; sourceTree = "<group>"; };
 		9D0268B624A163ED00E88BF1 /* CPBodyTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPBodyTextView.swift; sourceTree = "<group>"; };
@@ -114,7 +112,6 @@
 			isa = PBXGroup;
 			children = (
 				9D0268AC24A1389A00E88BF1 /* CPDataLoadingVC.swift */,
-				9D0268B024A146D100E88BF1 /* CPItemInfoHeaderVC.swift */,
 				9D628D1924A18930002F9891 /* CPAlertVC.swift */,
 			);
 			path = ViewControllers;
@@ -431,7 +428,6 @@
 				9D2B16DE24A0D46D005D8CFE /* NetworkingConstants.swift in Sources */,
 				9DCE9D5E249FECF60042FEBB /* AppDelegate.swift in Sources */,
 				9DF7DF6224A002C9009B5902 /* Constants.swift in Sources */,
-				9D0268B124A146D100E88BF1 /* CPItemInfoHeaderVC.swift in Sources */,
 				9D0268AD24A1389A00E88BF1 /* CPDataLoadingVC.swift in Sources */,
 				9D0268B324A1475300E88BF1 /* CPBodyLabel.swift in Sources */,
 				9D2B16EE24A0ED87005D8CFE /* CPTitleLabel.swift in Sources */,

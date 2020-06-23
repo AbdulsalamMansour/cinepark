@@ -76,7 +76,7 @@ class MovieAndTvInfoVC: UIViewController {
         
         NSLayoutConstraint.activate([
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            contentView.heightAnchor.constraint(equalToConstant: 620)
+            contentView.heightAnchor.constraint(equalToConstant: view.frame.size.height)
         ])
     }
     
