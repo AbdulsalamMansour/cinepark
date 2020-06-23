@@ -8,7 +8,6 @@
 
 import Foundation
 
-// MARK: - GetPopularMoviesResponse
 struct GetPopularResponse: Codable {
     let page, totalResults, totalPages: Int?
     let cineparkItems: [CineparkItem]?

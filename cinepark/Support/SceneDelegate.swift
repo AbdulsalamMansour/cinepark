@@ -13,7 +13,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     
-    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
@@ -24,7 +23,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         configureNavigationBar()
         initializeLoggingLibrary()
-        
     }
     
     func configureNavigationBar() {
@@ -36,7 +34,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         NetworkActivityLogger.shared.level = .debug
         NetworkActivityLogger.shared.startLogging()
         #endif
-        
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

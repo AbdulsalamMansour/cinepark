@@ -17,12 +17,12 @@ class MovieAndTvInfoVC: UIViewController {
     let scrollView              = UIScrollView()
     let contentView             = UIView()
     let posterImageView         = CPPosterImageView(frame: .zero)
-    let titleLabel              = CPTitleLabel(textAlignment: .left, fontSize: 20)
-    let overviewLabel           = CPBodyTextView()
     let propertyContainerView   = UIView()
     let ratingView              = CPPropertyView()
     let dateView                = CPPropertyView()
     let languageView            = CPPropertyView()
+    let titleLabel              = CPTitleLabel(textAlignment: .left, fontSize: 20)
+    let overviewLabel           = CPBodyTextView()
     
     let padding: CGFloat        = 12
     
@@ -39,7 +39,6 @@ class MovieAndTvInfoVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
@@ -49,6 +48,47 @@ class MovieAndTvInfoVC: UIViewController {
         configureOverviewLabel()
         configurePropertyContainerView()
         configurePropertiesViews()
+    }
+    
+    @objc func dismssVC() {
+        dismiss(animated: true)
+    }
+    
+    @objc func popCurrentVC(){
+        _ = navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func onAddToFavoritesClick() {
+        addItemToFavorites(cineparkItem: cineparkItem)
+    }
+    
+    @objc func onDeleteFromFavoritesClick(){
+        removeItemFromFavorites(cineparkItem: cineparkItem)
+    }
+    
+    func addItemToFavorites(cineparkItem: CineparkItem) {
+        PersistenceManager.updateWith(favorite: cineparkItem, actionType: .add) { [weak self] error in
+            guard let self = self else { return }
+            
+            guard let error = error else {
+                self.presentCPAlertOnMainThread(title: "Success!", message: "You have successfully favorited this item", buttonTitle: "Ok")
+                return
+            }
+            
+            self.presentCPAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+        }
+    }
+    
+    func removeItemFromFavorites(cineparkItem: CineparkItem){
+        PersistenceManager.updateWith(favorite: cineparkItem, actionType: .remove) { [weak self] error in
+            guard let self = self else { return }
+            guard let error = error else {
+                self.popCurrentVC()
+                return
+            }
+            
+            self.presentCPAlertOnMainThread(title: "Unable to remove", message: error.rawValue, buttonTitle: "Ok")
+        }
     }
     
     func configureViewController() {
@@ -63,7 +103,7 @@ class MovieAndTvInfoVC: UIViewController {
         } else {
             doneButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(self.onDeleteFromFavoritesClick))
         }
-                
+        
         navigationItem.rightBarButtonItem = doneButton
         navigationItem.leftBarButtonItem = favoriteButton
     }
@@ -108,8 +148,6 @@ class MovieAndTvInfoVC: UIViewController {
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
             titleLabel.heightAnchor.constraint(equalToConstant: 50)
         ])
-        
-        
     }
     
     func configureOverviewLabel(){
@@ -122,7 +160,6 @@ class MovieAndTvInfoVC: UIViewController {
             overviewLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
             overviewLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding)
         ])
-        
     }
     
     func configurePropertyContainerView(){
@@ -163,52 +200,6 @@ class MovieAndTvInfoVC: UIViewController {
             dateView.leadingAnchor.constraint(equalTo: propertyContainerView.leadingAnchor),
             dateView.trailingAnchor.constraint(equalTo: propertyContainerView.trailingAnchor),
             dateView.heightAnchor.constraint(equalToConstant: 60)
-            
-            
         ])
-        
     }
-    
-    
-    @objc func dismssVC() {
-        dismiss(animated: true)
-    }
-    
-    @objc func popCurrentVC(){
-        _ = navigationController?.popViewController(animated: true)
-    }
-    
-    @objc func onAddToFavoritesClick() {
-        addItemToFavorites(cineparkItem: cineparkItem)
-    }
-    
-    @objc func onDeleteFromFavoritesClick(){
-        removeItemFromFavorites(cineparkItem: cineparkItem)
-    }
-    
-    func addItemToFavorites(cineparkItem: CineparkItem) {
-        PersistenceManager.updateWith(favorite: cineparkItem, actionType: .add) { [weak self] error in
-            guard let self = self else { return }
-            
-            guard let error = error else {
-                self.presentCPAlertOnMainThread(title: "Success!", message: "You have successfully favorited this item", buttonTitle: "Ok")
-                return
-            }
-            
-            self.presentCPAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
-        }
-    }
-    
-    func removeItemFromFavorites(cineparkItem: CineparkItem){
-        PersistenceManager.updateWith(favorite: cineparkItem, actionType: .remove) { [weak self] error in
-            guard let self = self else { return }
-            guard let error = error else {
-                self.popCurrentVC()
-                return
-            }
-            
-            self.presentCPAlertOnMainThread(title: "Unable to remove", message: error.rawValue, buttonTitle: "Ok")
-        }
-    }
-    
 }

@@ -12,7 +12,6 @@
 		9D0268AD24A1389A00E88BF1 /* CPDataLoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0268AC24A1389A00E88BF1 /* CPDataLoadingVC.swift */; };
 		9D0268AF24A13E8800E88BF1 /* MovieAndTvInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0268AE24A13E8800E88BF1 /* MovieAndTvInfoVC.swift */; };
 		9D0268B324A1475300E88BF1 /* CPBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0268B224A1475300E88BF1 /* CPBodyLabel.swift */; };
-		9D0268B524A147B000E88BF1 /* CPSecondaryTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0268B424A147B000E88BF1 /* CPSecondaryTitleLabel.swift */; };
 		9D0268B724A163ED00E88BF1 /* CPBodyTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0268B624A163ED00E88BF1 /* CPBodyTextView.swift */; };
 		9D0268BC24A1669C00E88BF1 /* CPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0268BB24A1669C00E88BF1 /* CPError.swift */; };
 		9D0268BF24A1695300E88BF1 /* CPPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0268BE24A1695300E88BF1 /* CPPropertyView.swift */; };
@@ -55,7 +54,6 @@
 		9D0268AC24A1389A00E88BF1 /* CPDataLoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPDataLoadingVC.swift; sourceTree = "<group>"; };
 		9D0268AE24A13E8800E88BF1 /* MovieAndTvInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAndTvInfoVC.swift; sourceTree = "<group>"; };
 		9D0268B224A1475300E88BF1 /* CPBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPBodyLabel.swift; sourceTree = "<group>"; };
-		9D0268B424A147B000E88BF1 /* CPSecondaryTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPSecondaryTitleLabel.swift; sourceTree = "<group>"; };
 		9D0268B624A163ED00E88BF1 /* CPBodyTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPBodyTextView.swift; sourceTree = "<group>"; };
 		9D0268BB24A1669C00E88BF1 /* CPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPError.swift; sourceTree = "<group>"; };
 		9D0268BE24A1695300E88BF1 /* CPPropertyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPPropertyView.swift; sourceTree = "<group>"; };
@@ -184,7 +182,6 @@
 			children = (
 				9D2B16ED24A0ED87005D8CFE /* CPTitleLabel.swift */,
 				9D0268B224A1475300E88BF1 /* CPBodyLabel.swift */,
-				9D0268B424A147B000E88BF1 /* CPSecondaryTitleLabel.swift */,
 				9D0268B624A163ED00E88BF1 /* CPBodyTextView.swift */,
 			);
 			path = Labels;
@@ -431,7 +428,6 @@
 				9D2B16FC24A10CDB005D8CFE /* UIHelper.swift in Sources */,
 				9D2B16F424A0F918005D8CFE /* CineparkItem.swift in Sources */,
 				9DF7DF50249FF370009B5902 /* CPTabBarController.swift in Sources */,
-				9D0268B524A147B000E88BF1 /* CPSecondaryTitleLabel.swift in Sources */,
 				9D2B16DC24A0D446005D8CFE /* ApiRouter.swift in Sources */,
 				9DF7DF53249FF971009B5902 /* MoviesAndTvListVC.swift in Sources */,
 				9DF7DF55249FF98E009B5902 /* FavoritesListVC.swift in Sources */,

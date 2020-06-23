@@ -16,5 +16,4 @@ enum CPError: String, Error {
     case alreadyInFavorites = "You've already favorited this."
     case unauthorized       = "Authorization has been denied for this request."
     case invalidUserInput   = "Please check your input."
-
 }

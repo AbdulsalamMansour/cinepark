@@ -40,9 +40,7 @@ class MostViewedVC: UIViewController {
         let moviesAndTvListVC = MoviesAndTvListVC(contentType: contentType)
         navigationController?.pushViewController(moviesAndTvListVC, animated: true)
     }
-    
-    //MARK:- UIConfig Methods
-    
+        
     func configureLogoImageView() {
         view.addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -67,7 +65,6 @@ class MostViewedVC: UIViewController {
         ])
     }
     
-    
     func configureTvButton() {
         tvButton.addTarget(self, action: #selector(self.openTvList), for: .touchUpInside)
 
@@ -78,5 +75,4 @@ class MostViewedVC: UIViewController {
             tvButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
-    
 }

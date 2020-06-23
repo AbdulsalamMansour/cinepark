@@ -52,7 +52,6 @@ class CPPropertyView: UIView {
         ])
     }
     
-    
     func set(itemInfoType: ItemInfoType, withValue value: String?) {
         switch itemInfoType {
         case .rating:

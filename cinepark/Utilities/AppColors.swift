@@ -8,6 +8,5 @@
 
 import UIKit
 struct AppColors {
-    static var primaryViolet: UIColor {return UIColor(red: 0.72, green: 0.04, blue: 0.84, alpha: 1.00)}
-
+    static var primaryViolet: UIColor {return UIColor(red: 0.72, green: 0.04, blue: 0.84, alpha: 1.00)} //#b80ad7
 }

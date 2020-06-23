@@ -23,12 +23,10 @@ enum ApiRouter: URLRequestConvertible {
         
         urlRequest.timeoutInterval = 60 //seconds
         
-        // Common Headers
         urlRequest.setValue(NetworkingConstants.apiKey, forHTTPHeaderField: NetworkingConstants.HttpHeaderField.authentication.rawValue)
         urlRequest.setValue(NetworkingConstants.ContentType.json.rawValue, forHTTPHeaderField: NetworkingConstants.HttpHeaderField.acceptType.rawValue)
         urlRequest.setValue(NetworkingConstants.ContentType.json.rawValue, forHTTPHeaderField: NetworkingConstants.HttpHeaderField.contentType.rawValue)
         
-        //Encoding
         let encoding: ParameterEncoding = {
             switch method {
             case .get:
@@ -74,6 +72,5 @@ enum ApiRouter: URLRequestConvertible {
         case .getPopularTv(let page):
             return [NetworkingConstants.Parameters.page : page]
         }
-        
     }
 }

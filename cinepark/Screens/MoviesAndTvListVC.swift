@@ -37,7 +37,6 @@ class MoviesAndTvListVC: CPDataLoadingVC {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
@@ -49,7 +48,6 @@ class MoviesAndTvListVC: CPDataLoadingVC {
             getPopularTv(page: self.page)
         }
         configureDataSource()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -102,7 +100,6 @@ class MoviesAndTvListVC: CPDataLoadingVC {
         self.cineparkItems.append(contentsOf: results)
         self.updateData(on: self.cineparkItems)
     }
-    
     
     func getPopularMovies(page: Int){
         if Reachability.isConnectedToNetwork(){
@@ -189,7 +186,6 @@ extension MoviesAndTvListVC: UICollectionViewDelegate {
             } else {
                 getPopularTv(page: self.page)
             }
-            
         }
     }
     

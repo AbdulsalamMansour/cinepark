@@ -16,7 +16,6 @@ class CPTabBarController: UITabBarController {
         viewControllers                 = [createMostViewedVC(), createFavoritesNC()]
     }
     
-    
     func createMostViewedVC() -> UINavigationController {
         let mostViewedVC        = MostViewedVC()
         mostViewedVC.title      = "Most Viewed"
@@ -24,7 +23,6 @@ class CPTabBarController: UITabBarController {
         
         return UINavigationController(rootViewController: mostViewedVC)
     }
-    
     
     func createFavoritesNC() -> UINavigationController {
         let favoritesListVC         = FavoritesListVC()

@@ -23,5 +23,4 @@ enum UIHelper {
         
         return flowLayout
     }
-    
 }

@@ -14,17 +14,14 @@ class FavoriteCell: UITableViewCell {
     let posterImageView = CPPosterImageView(frame: .zero)
     let itemTitle       = CPTitleLabel(textAlignment: .left, fontSize: 18)
     
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configure()
     }
     
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     func set(favorite: CineparkItem) {
         if let posterPath = favorite.posterPath {
@@ -37,7 +34,6 @@ class FavoriteCell: UITableViewCell {
             itemTitle.text = favorite.name
         }
     }
-    
     
     private func configure() {
         addSubviews(posterImageView, itemTitle)

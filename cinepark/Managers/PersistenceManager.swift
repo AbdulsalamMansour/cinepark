@@ -44,7 +44,6 @@ enum PersistenceManager {
         }
     }
     
-    
     static func retrieveFavorites(completed: @escaping (Result<[CineparkItem], CPError>) -> Void) {
         guard let favoritesData = defaults.object(forKey: Keys.favorites) as? Data else {
             completed(.success([]))
@@ -59,7 +58,6 @@ enum PersistenceManager {
             completed(.failure(.unableToFavorite))
         }
     }
-    
     
     static func save(favorites: [CineparkItem]) -> CPError? {
         do {
