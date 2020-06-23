@@ -46,7 +46,7 @@ class MostViewedItemCell: UICollectionViewCell {
             posterImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
             posterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
             posterImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-            posterImageView.heightAnchor.constraint(equalTo: posterImageView.widthAnchor),
+            posterImageView.heightAnchor.constraint(equalTo: posterImageView.widthAnchor, multiplier: 1.5),
             
             titleLabel.topAnchor.constraint(equalTo: posterImageView.bottomAnchor, constant: 12),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
