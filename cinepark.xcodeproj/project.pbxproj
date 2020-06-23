@@ -77,7 +77,7 @@
 		9D79E11C24A1E5FC0002D7ED /* CPEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPEmptyStateView.swift; sourceTree = "<group>"; };
 		9D79E11E24A1E7940002D7ED /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		9D79E12024A1F3050002D7ED /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
-		9DCE9D5A249FECF60042FEBB /* cinepark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cinepark.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9DCE9D5A249FECF60042FEBB /* CinePark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CinePark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DCE9D5D249FECF60042FEBB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DCE9D5F249FECF60042FEBB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9DCE9D66249FECF80042FEBB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -203,7 +203,7 @@
 		9DCE9D5B249FECF60042FEBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9DCE9D5A249FECF60042FEBB /* cinepark.app */,
+				9DCE9D5A249FECF60042FEBB /* CinePark.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -326,7 +326,7 @@
 			);
 			name = cinepark;
 			productName = cinepark;
-			productReference = 9DCE9D5A249FECF60042FEBB /* cinepark.app */;
+			productReference = 9DCE9D5A249FECF60042FEBB /* CinePark.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -601,7 +601,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.abdulsalam.cinepark;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = CinePark;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -620,7 +620,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.abdulsalam.cinepark;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = CinePark;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
