@@ -36,6 +36,7 @@
 		9DCE9D60249FECF60042FEBB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCE9D5F249FECF60042FEBB /* SceneDelegate.swift */; };
 		9DCE9D67249FECF80042FEBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DCE9D66249FECF80042FEBB /* Assets.xcassets */; };
 		9DCE9D6A249FECF80042FEBB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DCE9D68249FECF80042FEBB /* LaunchScreen.storyboard */; };
+		9DE6033124A209C900D570C9 /* CineparkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE6033024A209C900D570C9 /* CineparkModel.swift */; };
 		9DF7DF50249FF370009B5902 /* CPTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF7DF4F249FF370009B5902 /* CPTabBarController.swift */; };
 		9DF7DF53249FF971009B5902 /* MoviesAndTvListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF7DF52249FF971009B5902 /* MoviesAndTvListVC.swift */; };
 		9DF7DF55249FF98E009B5902 /* FavoritesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF7DF54249FF98E009B5902 /* FavoritesListVC.swift */; };
@@ -79,6 +80,7 @@
 		9DCE9D66249FECF80042FEBB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9DCE9D69249FECF80042FEBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9DCE9D6B249FECF80042FEBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9DE6033024A209C900D570C9 /* CineparkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CineparkModel.swift; sourceTree = "<group>"; };
 		9DF7DF4F249FF370009B5902 /* CPTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPTabBarController.swift; sourceTree = "<group>"; };
 		9DF7DF52249FF971009B5902 /* MoviesAndTvListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesAndTvListVC.swift; sourceTree = "<group>"; };
 		9DF7DF54249FF98E009B5902 /* FavoritesListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesListVC.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				9D2B16E224A0D6A3005D8CFE /* GetPopularMoviesResponse.swift */,
+				9DE6033024A209C900D570C9 /* CineparkModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -441,6 +444,7 @@
 				9D2B16E724A0E5CD005D8CFE /* CPPosterImageView.swift in Sources */,
 				9DF7DF5A249FFADF009B5902 /* AppColors.swift in Sources */,
 				9D628D1624A1848B002F9891 /* PersistenceManager.swift in Sources */,
+				9DE6033124A209C900D570C9 /* CineparkModel.swift in Sources */,
 				9D0268B724A163ED00E88BF1 /* CPBodyTextView.swift in Sources */,
 				9DF7DF57249FF9D8009B5902 /* MostViewedVC.swift in Sources */,
 				9D628D1E24A18D36002F9891 /* FavoriteCell.swift in Sources */,
