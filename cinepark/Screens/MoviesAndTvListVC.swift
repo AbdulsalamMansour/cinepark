@@ -13,16 +13,16 @@ class MoviesAndTvListVC: CPDataLoadingVC {
     
     enum Section { case main }
     
+    var cineparkItems: [CineparkItem]           = []
+    var filteredCineparkItems: [CineparkItem]   = []
+    
+    var page                                    = 1
+    var hasMoreResults                          = true
+    var isLoadingMoreResults                    = false
+    var isSearching                             = false
+    
+    private let disposeBag                      = DisposeBag()
     var contentType: ContentType!
-    private let disposeBag              = DisposeBag()
-    
-    var cineparkItems: [CineparkItem]               = []
-    var filteredCineparkItems: [CineparkItem]       = []
-    
-    var page                            = 1
-    var hasMoreResults                  = true
-    var isLoadingMoreResults            = false
-    var isSearching                     = false
     
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, CineparkItem>!
@@ -44,7 +44,7 @@ class MoviesAndTvListVC: CPDataLoadingVC {
         configureCollectionView()
         configureSearchController()
         if contentType == ContentType.movies {
-            getMovies(page: self.page)
+            getPopularMovies(page: self.page)
         } else {
             getPopularTv(page: self.page)
         }
@@ -104,43 +104,74 @@ class MoviesAndTvListVC: CPDataLoadingVC {
     }
     
     
-    func getMovies(page: Int){
-        showLoadingView()
-        isLoadingMoreResults = true
-        ApiClient.getPopularMovies(page: page)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { response in
-                self.dismissLoadingView()
-                self.isLoadingMoreResults = false
-                if let results = response.cineparkItems {
-                    self.updateUI(with: results)
-                }
-            }, onError: { error in
-                self.dismissLoadingView()
-                self.isLoadingMoreResults = false
-                print("error ----------------------")
-            })
-            .disposed(by: disposeBag)
+    func getPopularMovies(page: Int){
+        if Reachability.isConnectedToNetwork(){
+            showLoadingView()
+            isLoadingMoreResults = true
+            ApiClient.getPopularMovies(page: page)
+                .observeOn(MainScheduler.instance)
+                .subscribe(onNext: { response in
+                    self.dismissLoadingView()
+                    self.isLoadingMoreResults = false
+                    if let results = response.cineparkItems {
+                        self.updateUI(with: results)
+                    }
+                }, onError: { error in
+                    self.dismissLoadingView()
+                    self.isLoadingMoreResults = false
+                    
+                    switch error {
+                    case ApiError.notFound:
+                        self.presentCPAlertOnMainThread(title: "Not Found", message: CPError.invalidResponse.rawValue, buttonTitle: "Ok")
+                    case ApiError.unauthorized:
+                        self.presentCPAlertOnMainThread(title: "Unauthorized !", message: CPError.unauthorized.rawValue, buttonTitle: "Ok")
+                    case ApiError.badRequest:
+                        self.presentCPAlertOnMainThread(title: "Bad Request", message: CPError.invalidUserInput.rawValue, buttonTitle: "Ok")
+                    default:
+                        self.presentCPAlertOnMainThread(title: "Invalid Data", message: CPError.invalidData.rawValue, buttonTitle: "Ok")
+                    }
+                })
+                .disposed(by: disposeBag)
+        } else {
+            self.presentCPAlertOnMainThread(title: "No Internet Connection", message: CPError.unableToComplete.rawValue, buttonTitle: "Ok")
+        }
     }
     
     func getPopularTv(page: Int){
-        showLoadingView()
-        isLoadingMoreResults = true
-        ApiClient.getPopularTv(page: page)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { response in
-                self.dismissLoadingView()
-                self.isLoadingMoreResults = false
-                if let results = response.cineparkItems {
-                    self.updateUI(with: results)
-                }
-                
-            }, onError: { error in
-                self.dismissLoadingView()
-                self.isLoadingMoreResults = false
-                
-            })
-            .disposed(by: disposeBag)
+        if Reachability.isConnectedToNetwork(){
+            showLoadingView()
+            isLoadingMoreResults = true
+            ApiClient.getPopularTv(page: page)
+                .observeOn(MainScheduler.instance)
+                .subscribe(onNext: { response in
+                    self.dismissLoadingView()
+                    self.isLoadingMoreResults = false
+                    if let results = response.cineparkItems {
+                        self.updateUI(with: results)
+                    }
+                    
+                }, onError: { error in
+                    self.dismissLoadingView()
+                    self.isLoadingMoreResults = false
+                    
+                    switch error {
+                    case ApiError.notFound:
+                        self.presentCPAlertOnMainThread(title: "Not Found", message: CPError.invalidResponse.rawValue, buttonTitle: "Ok")
+                        
+                    case ApiError.unauthorized:
+                        self.presentCPAlertOnMainThread(title: "Unauthorized !", message: CPError.unauthorized.rawValue, buttonTitle: "Ok")
+                        
+                    case ApiError.badRequest:
+                        self.presentCPAlertOnMainThread(title: "Bad Request", message: CPError.invalidUserInput.rawValue, buttonTitle: "Ok")
+                        
+                    default:
+                        self.presentCPAlertOnMainThread(title: "Invalid Data", message: CPError.invalidData.rawValue, buttonTitle: "Ok")
+                    }
+                })
+                .disposed(by: disposeBag)
+        } else {
+            self.presentCPAlertOnMainThread(title: "No Internet Connection", message: CPError.unableToComplete.rawValue, buttonTitle: "Ok")
+        }
     }
 }
 
@@ -154,7 +185,7 @@ extension MoviesAndTvListVC: UICollectionViewDelegate {
             guard hasMoreResults, !isLoadingMoreResults else { return }
             page += 1
             if contentType == ContentType.movies {
-                getMovies(page: self.page)
+                getPopularMovies(page: self.page)
             } else {
                 getPopularTv(page: self.page)
             }
@@ -164,11 +195,8 @@ extension MoviesAndTvListVC: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let activeArray     = isSearching ? filteredCineparkItems : cineparkItems
-        let cineparkItem        = activeArray[indexPath.item]
-        
+        let cineparkItem    = activeArray[indexPath.item]
         let destVC          = MovieAndTvInfoVC(cineparkItem: cineparkItem, presentation: .modal)
-        //destVC.username     = follower.login
-        //destVC.delegate     = self
         let navController   = UINavigationController(rootViewController: destVC)
         present(navController, animated: true)
     }
