@@ -1,6 +1,6 @@
 # CinePark
 
-This is a sample ap that utilizes The Movie Database (TMDb) free API to show most popular movies and TV series.
+This is a sample app that utilizes The Movie Database (TMDb) free API to show most popular movies and TV series.
 
  - Upon launch, the app presents the user with two options.
  - Allow the user to search movies and TV.
